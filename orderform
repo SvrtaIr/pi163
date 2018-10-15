@@ -1,0 +1,65 @@
+<?php
+require ('header.php');
+?>
+<html>
+<head>
+ <title> Кафе Валентина </title>
+</head>
+<body>
+ 
+<h1> Лабораторная работа №1 по теме передача данных из формы в основную программу и их последующая обработка </h1>
+ 
+<h2> Кафе Валентина </h2>
+<h3> Форма заказа </h3>
+ 
+<form action="processorder.php" method=post>
+<table border=0>
+<tr bgcolor=#cccccc>
+ <td width=150>Товар</td>
+ <td width=15>Количество</td>
+</tr>
+<tr>
+ <td>Котлеты</td>
+ <td align="center"><input type="text" name="tireqty" size="3" maxlength="3"></td>
+</tr>
+<tr>
+ <td>Чай</td>
+ <td align="center"><input type="text" name="sparkqty" size="3" maxlength="3"></td>
+</tr>
+<tr>
+ <td>Кофе</td>
+ <td align="center"><input type="text" name="kofe" size="3" maxlength="3"></td>
+</tr>
+<tr>
+ <td>Сок</td>
+ <td align="center"><input type="text" name="sok" size="3" maxlength="3"></td>
+</tr>
+<tr>
+ <td>Печенье</td>
+ <td align="center"><input type="text" name="pech" size="3" maxlength="3"></td>
+</tr>
+<tr>
+ <td>Конфеты</td>
+ <td align="center"><input type="text" name="kon" size="3" maxlength="3"></td>
+</tr>
+<tr>
+ <td>Как вы нашли компанию "Кафе Валентина"</td>
+ <td><select name="find">
+        <option value = "Я регулярный клиент">я регулярный клиент 
+		<option value = "В телевизионной рекламе">В телевизионной рекламе
+		<option value = "В телефонном справочнике">В телефонном справочнике
+		<option value = "Кто-то порекомендовал">Кто-то порекомендовал
+	</select>
+ </td>
+</tr>
+<tr>
+ <td colspan="2" align="center"><input type="submit" name = "send" value="Отправить заказ"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+<?php
+require ('footer.php');
+?>
+   
