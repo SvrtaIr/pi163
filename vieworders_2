@@ -1,0 +1,41 @@
+<?php
+require('header.php');
+?>
+
+<?php
+ //Создать короткие имена переменных
+ $DOCUMENT_ROOT = $_SERVER['DOCUMENT_ROOT'];
+?>
+<html>
+<head>
+ <title>Кафе Валентина - Заказы клиентов</title>
+</head>
+<body>
+<h1>Лабораторная работа №2 по теме сохранение и восстановление данных посредством текстовых файлов</h1>
+<h2>Кафе Валентина</h2>
+<h3>Заказы клиентов</h3>
+<?php
+@ $fp = fopen("orders.txt",'r');
+  
+  if (!$fp)
+  {
+	  echo '<p><strong>Нет ожидающих заказов.'
+	      .'Пожалуйста, попытайтесь позже.</strong></p>';
+	  exit;
+  }
+  
+  while (!feof($fp))
+  {
+	  $order=fgets($fp, 999);
+	  echo $order.'br/';
+  }
+  fclose($fp);
+  
+?>
+</body>
+</html>
+
+<?php
+require('footer.php');
+?>
+	  
