@@ -1,0 +1,69 @@
+<?php
+require('header.php');
+?>
+<htm1>
+<head>
+<title>Кафе Валентина - Результаты заказа</title>
+</head>
+<body>
+<h1>Лабораторная работа N 1 по теме передача данных из формы в основную программу и их последующая обработка</h1>
+<h2>Кафе Валентина</h2>
+<h3>Результаты заказа</h3>
+<?php
+ echo '<p>Заказ обработан в ';
+echo date('H:i, jS F');
+echo '</p>';
+
+//создать короткие имена переменных
+$tireqty = $_POST['tireqty'];
+$sparkqty = $_POST['sparkqty'];
+$kofe = $_POST['kofe'];
+$sok = $_POST['sok'];
+$pech = $_POST['pech'];
+$kon = $_POST['kon'];
+$find = $_POST['find'];
+
+echo '<p>Список вашего заказа: </p>';
+echo $tireqty .' Котлеты</br>';
+echo $sparkqty .' Чай</br>';
+echo $kofe .' Кофе</br>';
+echo $sok .' Сок</br>';
+echo $pech .' Печенье</br>';
+echo $kon .' Конфеты</br>';
+
+$totalqty = 0;
+$totalqty = $tireqty + $sparkqty + $kofe + $sok + $pech + $kon;
+echo 'Заказано блюд: '.$totalqty.'</br>';
+
+$totalamount = 0.00;
+
+define('TIREPRICE',20);
+define('KOFEPRICE',15);
+define('SPARKPRICE',4);
+define('SOKPRICE',6);
+define('PECHPRICE',3);
+define('KONPRICE',5);
+
+$totalamount = $tireqty * TIREPRICE
++ $kofe * KOFEPRICE 
++ $sparkqty * SPARKPRICE 
++ $sok * SOKPRICE 
++ $pech * PECHPRICE 
++ $kon * KONPRICE;
+
+echo 'Итого: $'.number_format($totalamount,3).'</br>';
+
+ $taxrate = 0.10; // местный налог с продаж составляет 10%
+ $totalamount = $totalamount * (1 + $taxrate);
+ echo 'Всего, включая налог с продаж: $'. number_format($totalamount,2).'<br>';
+
+?>
+На вопрос как Вы нашли нашу компанию был получен ответ: <?php echo $find; ?> 
+
+
+ 
+</body>
+</htm1>
+<?php
+require('footer.php');
+?>
