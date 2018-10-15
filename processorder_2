@@ -1,0 +1,78 @@
+ $totalqty += $pech;
+ $totalqty += $kon;
+ 
+ $totalamoount = 0.00;
+ 
+ define('TIREPRICE', 20);
+ define('KOFEPRICE',15);
+ define('SPARKPRICE',4);
+ define('SOKPRICE',6);
+ define('PECHPRICE',3);
+ define('KONPRICE',5);
+ 
+ $date = date('H:i, jS F');
+ echo '<p>Заказ обработан в ';
+ echo $date;
+ echo '<br />';
+ echo '<p>Список вашего заказа:';
+ echo '<br />';
+ 
+ if( $totalqty == 0 )
+ {
+  echo 'Вы ничего не заказали на предыдущей странице!<br />';
+ }
+ else
+ {
+  if ( $tireqty>0 )
+   echo $tireqty. ' Котлет<br />';
+  if ( $sparkqty>0 )
+   echo $tireqty. ' Чашек чая<br />';
+  if ( $kofe>0 )
+   echo $tireqty. ' Чашек кофе<br />';
+  if ( $sok>0 )
+   echo $tireqty. ' Стаканов сока<br />';
+  if ( $pech>0 )
+   echo $tireqty. ' Печенья<br />';
+  if ( $kon>0 )
+   echo $tireqty. ' Конфет<br />';
+ }
+ $totalamount = $tireqty * TIREPRICE + $sparkqty * SPARKPRICE + $kofe * KOFEPRICE + $sok * SOKPRICE + $pech * PECHPRICE + $kon * KONPRICE;
+ $totalamount = number_format($totalamount, 2, '.', ' ');
+ 
+ echo '<P>Итого по заказу: '.$totalamount.'</p>';
+ 
+ echo '<P>ФИО клиента: '.$fio.'</p>';
+ 
+ echo '<P>Адрес доставки: '.$address.'<br />';
+ 
+ $outputstring = $date."\t".$tireqty."Котлет \t".$sparkqty."Чая \t".$kofe."Кофе \t"
+                 .$sok."Сока \t".$pech."Печенья \t".$kon."Конфет \t\$".$totalamount
+				 ."\t Адрес доставки\t ".$address."\t ФИО клиента:".$fio."\n";
+ 
+ //Открыть файл для добавления
+ $fp = fopen("orders.txt",'a');
+ 
+ flock($fp, LOCK_EX);
+ 
+ if (!$fp)
+ {
+	 echo '<p><strong> В настоящий момент ваш заказ не может быть обработан. '
+	      .'Пожалуйста, попытайтесь позже.</strong></p></body></html>';
+	exit;
+ }
+ 
+ fwrite($fp, $outputstring);
+ flock($fp, LOCK_UN);
+ fclose($fp);
+ 
+ echo '<p>Заказ сохранен.</p>';
+ 
+?>
+
+<a href="vieworders_2.php">Интерфейс персонала для просмотра файла заказов </a>
+
+</body>
+</html>
+
+
+<?php
